@@ -1,0 +1,97 @@
+
+
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Brno Emergency
+        </h1>
+        <% include ./partials/messages %>
+        <form action="/dashboard" method="POST" onsubmit="return confirm('Do you really want to submit the emergency?');">
+            <input type="hidden" value="<%= _id %>" id="_uid" name="_uid">
+            <input type="hidden" name="latitude" id="latitude" value="">
+            <input type="hidden" name="longitude" id="longitude" value="">
+            <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              name="name"
+              class="form-control"
+              placeholder="Enter Name"
+              value="<%= name %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input
+              type="phone"
+              id="phone"
+              name="phone"
+              class="form-control"
+              placeholder="Enter Phone number"
+              value="<%= phone %>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Enter Email"
+              value="<%= email %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleTextarea">Summary: Suggestion, Report, or Problem.</label>
+            <textarea onclick="getLocation()" class="form-control" id="summary" name="summary" rows="3" spellcheck="false"></textarea>
+          </div>
+
+        
+          <button onclick="getLocation()" class="btn btn-info mb-3" type="submit" value="emgSuggestion" name = "btnReport">Suggestion</button>
+          <button onclick="getLocation()" class="btn btn-info mb-3" type="submit" value="emgReport" name = "btnReport">Report Problems</button>
+                  
+          <button onclick="getLocation()" class="btn btn-primary mb-3" type="submit" value="emgEU" name = "btnReport">Emergency(EU), Tel: 112</button>
+          <button onclick="getLocation()" class="btn btn-secondary mb-3" type="submit" value="emgPolice" name = "btnReport">Police(City) Tel: 156</button>
+          <button onclick="getLocation()" class="btn btn-warning mb-3" type="submit" value="emgAmbulance" name = "btnReport">Ambulance Tel: 155</button>
+          <button onclick="getLocation()" class="btn btn-danger mb-3" type="submit" value="emgfire" name = "btnReport">Fire, Tel: 150</button>                                    
+     
+        </form>
+        
+        
+      </div>
+    </div>
+  </div>
+  
+  
+
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-3">Welcome <%= name %></p>
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
+
+
+<script>
+    window.onload = function() {
+      getLocation();
+    };
+  
+      var latitude = document.getElementById("latitude");
+      var longitude = document.getElementById("longitude");
+      function getLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+          console.log("Geolocation is not supported by this browser.");        
+        }
+      }
+      
+      function showPosition(position) {
+          latitude.value =  position.coords.latitude;
+          longitude.value = position.coords.longitude;
+          console.log("position.coords.latitude : " + position.coords.latitude);
+          console.log("position.coords.longitude : " + position.coords.longitude);
+      }
+      </script>
