@@ -57,7 +57,8 @@ router.post('/dashboard', ensureAuthenticated, (req, res) =>{
           });
     } else {
         RequestEM.findOne({ email: email, summary:summary }).then(user => {
-        if (user.category == "emgSuggestion" || user.category == "emgReport") {
+        //skip validation
+        if (1==2) {
           errors.push({ msg: 'Issue already exists' });
           res.render('dashboard', {
             errors,
