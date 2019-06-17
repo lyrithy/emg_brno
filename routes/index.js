@@ -7,6 +7,19 @@ const RequestEM = require('../models/RequestEM');
 router.get('/', forwardAuthenticated, (req, res) => res.render('welcome'));
 
 // Dashboard
+router.get('/adminpanel', (req, res) =>{
+  RequestEM.find({}, function(err,docs){
+    res.render('adminpanel',{issues:docs});
+  })
+  
+  
+  
+  
+   //res.render('adminpanel')
+});
+
+
+// Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>{
     console.log(req.user.name + req.user.email);
     res.render('dashboard', {
@@ -74,13 +87,7 @@ router.post('/dashboard', ensureAuthenticated, (req, res) =>{
               'success_msg',
               'Your issue has been submitted, we will contact you immediately'
             );
-            res.render('dashboard', {
-                errors,
-                name: req.user.name,
-                email: req.user.email,
-                phone: req.user.phone,
-                _id: req.user._id
-              });
+            res.render('frmconfirm');
           })
           .catch(err => console.log(err));
         }
