@@ -143,6 +143,7 @@
                                         
                                         
                                         <a href="http://www.google.com/maps/place/<%= issues[i].geo_location.lat %>,<%= issues[i].geo_location.lng %>" class="list-group-item"><%= issues[i].name %> 
+                                            <span class="float-right badge badge-light round"> Tel:<%= issues[i].summary %></span> 
                                             <span class="float-right badge badge-light round"> Tel:<%= issues[i].phone %></span> 
                                             <span class="float-right badge badge-light round">Email:<%= issues[i].email %></span>
                                          </a>
