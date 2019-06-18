@@ -15,7 +15,7 @@ router.get('/register',  (req, res) => res.render('registration/register'));
 
 // Register
 router.post('/register', (req, res) => {
-    const { name, email, password, password2 } = req.body;
+    const { name, email, password, password2 ,phone} = req.body;
     let errors = [];
   
     if (!name || !email || !password || !password2) {
@@ -53,6 +53,7 @@ router.post('/register', (req, res) => {
           const newUser = new User({
             name:name,
             email:email,
+            phone:phone,
             password:password,
             geo_location: {
                 lat:233344,
