@@ -29,6 +29,17 @@
             />
           </div>
           <div class="form-group">
+            <label for="email">Phone</label>
+            <input
+              type="phone"
+              id="phone"
+              name="phone"
+              class="form-control"
+              placeholder="Enter Phone number"
+              value="<%= typeof phone != 'undefined' ? phone : '' %>"
+            />
+          </div>
+          <div class="form-group">
             <label for="password">Password</label>
             <input
               type="password"
